@@ -79,7 +79,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
-                Toast.makeText(MapsActivity.this, location.toString(), Toast.LENGTH_SHORT).show();
+                LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(userLocation).title("Mount Everest, biggest in the world")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 5));
             }
         };
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -104,10 +107,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-        // Add a marker in Sydney and move the camera
-        LatLng everest = new LatLng(27.988461, 86.924889);
-        mMap.addMarker(new MarkerOptions().position(everest).title("Mount Everest, biggest in the world")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(everest, 5));
     }
 }
