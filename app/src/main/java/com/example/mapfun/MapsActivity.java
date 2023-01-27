@@ -45,6 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
         // Add a marker in Sydney and move the camera
         LatLng everest = new LatLng(27.988461, 86.924889);
         mMap.addMarker(new MarkerOptions().position(everest).title("Mount Everest, biggest in the world")
